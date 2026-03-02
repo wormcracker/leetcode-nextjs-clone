@@ -37,3 +37,10 @@
 - prisma migration to track and sync
 - Defining Server Actions ( After logged-in, crate a onBoard() server actions, get userInfo from clerk session, and store into db)
 - use upsert(); update if exists, create if not.
+
+## NavBar and Homepage
+
+- Create a route group `app/(root)` then `page.jsx` and `layout.jsx` to have shared layout across root routes.
+- Create a dark theme provider, provided by shadcn `component/provider/theme-provider.jsx` and wrap it, also create a mode-toggle inside `component/ui/mode-toggle.jsx` to toggle theme provided by shadcn
+- Create a navbar component `modules/navbar.jsx` and import it in `app/(root)/layout.jsx` to share navbar for entire homepage.
+- Create a landing page.

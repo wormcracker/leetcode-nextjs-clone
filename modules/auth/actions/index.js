@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { UserRole } from "@/lib/generated/prisma/enums";
 import { currentUser } from "@clerk/nextjs/server";
 
 export const onBoardUser = async () => {
@@ -40,4 +41,21 @@ export const onBoardUser = async () => {
       error: "Failed to onboard user",
     };
   }
+};
+
+export const currentUserRole = async () => {
+  const user = await currentUser();
+  if (!user) {
+    return UserRole.USER;
+  }
+  const { id } = user;
+  const userRole = await db.user.findUnique({
+    where: {
+      clerkId: id,
+    },
+    select: {
+      role: true,
+    },
+  });
+  return userRole?.role ?? UserRole.USER;
 };
