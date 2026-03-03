@@ -59,3 +59,16 @@ export const currentUserRole = async () => {
   });
   return userRole?.role ?? UserRole.USER;
 };
+
+export const getCurrentUser = async () => {
+  const user = await currentUser();
+  const dbUser = await db.user.findUnique({
+    where: {
+      clerkId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return dbUser;
+};

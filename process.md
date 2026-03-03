@@ -9,6 +9,7 @@
 - Git: Github ( github.com/wormcracker )
 - Docker
 - Authentication: Clerk ( 3rd party )
+- Judge0: Code execution system
 
 ## Prisma and Database Setup
 
@@ -44,3 +45,20 @@
 - Create a dark theme provider, provided by shadcn `component/provider/theme-provider.jsx` and wrap it, also create a mode-toggle inside `component/ui/mode-toggle.jsx` to toggle theme provided by shadcn
 - Create a navbar component `modules/navbar.jsx` and import it in `app/(root)/layout.jsx` to share navbar for entire homepage.
 - Create a landing page.
+
+## Judge0
+
+- Setup up code engine (judge0) using docker(self hosted).
+- inside `judge0/`
+
+```sh
+sudo docker-compose up -d db redis
+sleep 10s
+sudo docker-compose up -d
+```
+
+## Problem Creation
+
+- Define Problem schema `prisma/schema.prisma`, migrate, push, and generate.
+- Create a POST route for create-problem `app/api/create-problem/route.js`. ( Add validation, submission )
+- Create a frontend for create-problem `app/create-problem/page.jsx` and `modules/problems/component/create-problem-form.jsx`
