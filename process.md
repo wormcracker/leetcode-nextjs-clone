@@ -62,3 +62,10 @@ sudo docker-compose up -d
 - Define Problem schema `prisma/schema.prisma`, migrate, push, and generate.
 - Create a POST route for create-problem `app/api/create-problem/route.js`. ( Add validation, submission )
 - Create a frontend for create-problem `app/create-problem/page.jsx` and `modules/problems/component/create-problem-form.jsx`
+
+## Get problem
+
+- Create server actions to fetch and delete problem for users `modules/problems/actions/index.js`
+- Create a route problems `app/(root)/problems/page.jsx`
+- Create a client component `modules/problems/component/problem-table.jsx`
+- Create a problemSolved Schema `prisma/schema.prisma`
