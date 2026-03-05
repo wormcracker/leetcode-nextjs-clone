@@ -39,6 +39,8 @@ export async function POST(req) {
       testCases,
       codeSnippets,
       referenceSolutions,
+      hints,
+      editorial,
     } = body;
 
     // validate input
@@ -131,6 +133,8 @@ export async function POST(req) {
         testCases,
         codeSnippets,
         referenceSolutions,
+        hints,
+        editorial,
         userId: user.id,
       },
     });

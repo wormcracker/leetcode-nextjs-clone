@@ -69,3 +69,10 @@ sudo docker-compose up -d
 - Create a route problems `app/(root)/problems/page.jsx`
 - Create a client component `modules/problems/component/problem-table.jsx`
 - Create a problemSolved Schema `prisma/schema.prisma`
+
+## Problem Solving Page
+
+- Create a route "problem" component which accept the problem id and show content. `app/problems/[id]/page.jsx`
+- Create a schema model Submission and TestCaseResult to `prisma/schema.prisma`
+- Add a execute_code function to `modules/problems/actions/index.js`
+-
