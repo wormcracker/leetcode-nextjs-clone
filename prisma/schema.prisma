@@ -24,6 +24,7 @@ model User {
   problems       Problem[]
   solvedProblems ProblemSolved[]
   submissions    Submission[]
+  playlists       Playlist[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -58,8 +59,9 @@ model Problem {
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id])
 
-  solvedBy    ProblemSolved[]
-  submissions Submission[]
+  solvedBy         ProblemSolved[]
+  submissions      Submission[]
+  problemsPlaylist ProblemInPlaylist[]
 
   @@index([difficulty])
 }
@@ -115,4 +117,30 @@ model ProblemSolved {
   user    User    @relation(fields: [userId], references: [id])
 
   @@unique([userId, problemId])
+}
+
+model Playlist {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user     User                @relation(fields: [userId], references: [id])
+  problems ProblemInPlaylist[]
+
+  @@unique([name, userId])
+}
+
+model ProblemInPlaylist {
+  id         String   @id @default(uuid())
+  playlistId String
+  problemId  String
+  createdAt  DateTime @default(now())
+
+  playlist Playlist @relation(fields: [playlistId], references: [id])
+  problem  Problem  @relation(fields: [problemId], references: [id])
+
+  @@unique([playlistId, problemId])
 }
