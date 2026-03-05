@@ -75,4 +75,9 @@ sudo docker-compose up -d
 - Create a route "problem" component which accept the problem id and show content. `app/problems/[id]/page.jsx`
 - Create a schema model Submission and TestCaseResult to `prisma/schema.prisma`
 - Add a execute_code function to `modules/problems/actions/index.js`
--
+
+## Submission History
+
+- Create a action to fetch submission history `modules/problems/actions/index.js`
+- Create a client function to call the action`app/(root)/problems/page.jsx`
+- Create a component to render submission history `modules/problems/component/submission-history.jsx`
