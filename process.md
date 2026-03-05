@@ -88,3 +88,7 @@ sudo docker-compose up -d
 - Create a route end point for POST and GET call to create and fetch the playlist `app/api/playlists/route.js`
 - Create a route end point for problemInPlaylist `app/api/playlists/add-problem/route.js`
 - Create a client component to enter the playlist detail `modules/problems/component/add-to-playlist.jsx` and `modules/problems/component/create-playlist.jsx`
+
+## User Profile
+
+- Create a server action to fetch the necessary user info `modules/profile/actions/index.js`
