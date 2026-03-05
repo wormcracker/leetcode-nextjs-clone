@@ -81,3 +81,10 @@ sudo docker-compose up -d
 - Create a action to fetch submission history `modules/problems/actions/index.js`
 - Create a client function to call the action`app/(root)/problems/page.jsx`
 - Create a component to render submission history `modules/problems/component/submission-history.jsx`
+
+## Playlist Feature
+
+- Create a schema model for playlist `prisma/schema.prisma`
+- Create a route end point for POST and GET call to create and fetch the playlist `app/api/playlists/route.js`
+- Create a route end point for problemInPlaylist `app/api/playlists/add-problem/route.js`
+- Create a client component to enter the playlist detail `modules/problems/component/add-to-playlist.jsx` and `modules/problems/component/create-playlist.jsx`
