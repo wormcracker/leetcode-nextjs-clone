@@ -38,9 +38,13 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { getJudge0LanguageId } from "@/lib/judge0";
 import { toast } from "sonner";
 import Link from "next/link";
-import { getProblemById } from "@/modules/problems/actions";
+import {
+  getAllSubmissionByCurrentUserForProblem,
+  getProblemById,
+} from "@/modules/problems/actions";
 import { SubmissionDetails } from "@/modules/problems/component/submission-details";
 import { TestCaseTable } from "@/modules/problems/component/test-case-table";
+import { SubmissionHistory } from "@/modules/problems/component/submission-history";
 
 const getDifficultyColor = (difficulty) => {
   switch (difficulty) {
@@ -82,6 +86,25 @@ const ProblemIdPage = ({ params }) => {
     };
 
     fetchProblem();
+  }, [params]);
+
+  useEffect(() => {
+    const fetchSubmissionHistory = async () => {
+      try {
+        const resolvedParams = await params;
+        const submissionHistory = await getAllSubmissionByCurrentUserForProblem(
+          resolvedParams.id,
+        );
+        console.log(submissionHistory);
+        if (submissionHistory.success) {
+          setSubmissionHistory(submissionHistory.data);
+        }
+      } catch (error) {
+        console.error("Error fetching problem:", error);
+      }
+    };
+
+    fetchSubmissionHistory();
   }, [params]);
 
   useEffect(() => {
@@ -248,6 +271,7 @@ const ProblemIdPage = ({ params }) => {
                   </TabsList>
                   <TabsContent value="submissions" className="p-6">
                     <div className="text-center py-8 text-muted-foreground"></div>
+                    <SubmissionHistory submissions={submissionHistory} />
                   </TabsContent>
                   <TabsContent value="editorial" className="p-6">
                     <div className="text-center py-8 text-muted-foreground">
